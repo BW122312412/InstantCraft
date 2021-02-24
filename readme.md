@@ -47,7 +47,11 @@ Now **connect** to the new instance. You can use **EC2 Instance Connect**. (In c
 
 In the command prompt setup your minecraft server.
 
-After your server is downloaded and ready, create a new file in /etc/init.d/ and add the following code.
+    git clone https://github.com/BW122312412/InstantCraft.git
+    cd InstantCraft
+    sudo ./init.sh
+    sudo ln -s boot.sh /etc/init.d/bootMinecraft
+    sudo ln -s boot.sh /etc/rc1.d/bootMinecraft
 
 
 ## Create Proxy Server
@@ -62,8 +66,34 @@ Select **Launch instances**.
 6. Configure **Security Group**: Assign a security group to an **existing security group** and select the security group made earlier
 7. Review: **Review and Launch**
 
+In the sidebar, under **Network & Security**, access **Elastic IPs**.
+
+Select your **Previous Elastic IP** and **Associate** it with your proxy server.
+
+Open a new tab with AWS. Search **Users** and under features open **Users**.
+
+**Add user**. Add a name and grant **Programmatic access**.
+
+In **Permissions** add **StartInstances**, **StopInstances**, **AssociateAddress**
+
+Copy the **Access Key Id** and the **Secret Access Key**. (Temporarily store for next step)
+
 Open the instance in a shell and enter:
+    
     aws configure
+
+Enter **Access Key Id** and **Secret Access Key** when prompted
+
+Next run
+
+    git clone https://github.com/BW122312412/InstantCraft.git
+    cd InstantCraft
+
+Fill out the configure.py
+
+    python instantMinecraft.py & 
+    disown  -h  %1
+
 
 
 

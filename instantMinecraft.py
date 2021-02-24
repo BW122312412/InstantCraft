@@ -14,7 +14,8 @@ while True:
     
     os.system('aws ec2 start-instances --instance-ids {}'.format(c.serverInstance))
     os.system('aws ec2 associate-address --instance-id  {} --public-ip {} --allow-reassociation'.format(c.serverInstance, c.elasticIP))
-
+    
+    time.sleep(60 * 3)
     while True:
         time.sleep(60 * 3)
         j = MQ.get_info(c.serverInstance,25565)

@@ -1,3 +1,3 @@
-screen -S "Minecraft"
-cd
-sh start.sh
+#!/bin/sh
+cd /home/ubuntu/InstantCraft/
+./start.sh
