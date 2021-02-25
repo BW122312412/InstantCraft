@@ -52,7 +52,7 @@ In the command prompt setup your minecraft server.
     wget https://raw.githubusercontent.com/BW122312412/InstantCraft/master/init.sh
     chmod +x 
     sudo ./init.sh
-    ./start.sh
+    sudo ./start.sh
     
 
 ## Create Proxy Server
@@ -95,4 +95,3 @@ Next run
 Fill out the **configure.py**, then
 
     python instantMinecraft.py & 
-    disown  -h  %1
