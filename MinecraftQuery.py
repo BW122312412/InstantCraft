@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # source https://stackoverflow.com/questions/27658634/listening-to-port-and-capturing-data-in-python
-import sys,json,struct,socket
+import sys,json,socket
+import struct as stu
 
 def popint(s):
   acc = 0
@@ -24,7 +25,7 @@ def get_info(host,port):
   s.send(pack_data(
     bytes(2)+
     pack_data(bytes(host,'utf8'))+
-    struct.pack('>H',port)+
+    stu.pack('>H',port)+
     bytes([1]))+
     bytes([1,0]))
   popint(s)   # Packet length
