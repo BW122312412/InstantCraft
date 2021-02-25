@@ -12,7 +12,7 @@ while True:
 
     # waits for signal
     (clientsocket, address) = s.accept()
-    s.shutdown() 
+    s.shutdown(socket.SHUT_RDWR) 
     s.close()
 
     print('Starting server')
