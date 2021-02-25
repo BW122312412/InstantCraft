@@ -21,7 +21,12 @@ def pack_data(d):
 def get_info(host,port):
   s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
   s.connect((host, port))
-  s.send(pack_data(bytes(2)+pack_data(bytes(host,'utf8'))+struct.pack('>H',port)+bytes([1]))+bytes([1,0]))
+  s.send(pack_data(
+    bytes(2)+
+    pack_data(bytes(host,'utf8'))+
+    struct.pack('>H',port)+
+    bytes([1]))+
+    bytes([1,0]))
   popint(s)   # Packet length
   popint(s)   # Packet ID
   l,d = popint(s),bytes()
