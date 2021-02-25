@@ -23,4 +23,4 @@ while True:
             break
 
     os.system('aws ec2 associate-address --instance-id  {} --public-ip {} --allow-reassociation'.format(c.proxyInstance, c.elasticIP))
-    os.system('aws ec2 stop-instances --instance-ids {}'.format(c.serverInstance))
+    os.system('aws ec2 stop-instances --instance-ids {} --hibernate'.format(c.serverInstance))

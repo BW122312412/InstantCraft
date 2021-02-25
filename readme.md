@@ -35,24 +35,25 @@ Select **Allocate Elastic IP address** and **Allocate** it.
 In the sidebar, under **Instances**, access **Instances**.
 
 Select **Launch instances**.
-1. Choose an **Amazon Machine Image** (AMI) : Select **Ubuntu server**
+1. Choose an **Amazon Machine Image** (AMI) : Select **Amazon Linux 2**
 2. Choose an **Instance Type**: Choose based on the server specs wanted. (I choose m4.xlarge)
 3. Configure Instance Details: Leave as Default
-4. Add **Storage**: Increase root to as much as you need (I choose 30)
+4. Add **Storage**: Increase root to as much as you need (I choose 30), turn off Delete on termination and choose, and encryption.
 5. Add Tags: Optional
 6. Configure **Security Group**: Assign a security group to an **existing security group** and select the security group made earlier
 7. Review: **Review and Launch**
 
 Now **connect** to the new instance. You can use **EC2 Instance Connect**. (In case of error, validate your Security group)
 
+
+
 In the command prompt setup your minecraft server.
 
-    git clone https://github.com/BW122312412/InstantCraft.git
-    cd InstantCraft
+    wget https://raw.githubusercontent.com/BW122312412/InstantCraft/master/init.sh
+    chmod +x 
     sudo ./init.sh
-    sudo ln -s boot.sh /etc/init.d/bootMinecraft
-    sudo ln -s boot.sh /etc/rc1.d/bootMinecraft
-
+    ./start.sh
+    
 
 ## Create Proxy Server
 In the sidebar, under **Instances**, access **Instances**.
@@ -93,9 +94,3 @@ Fill out the configure.py
 
     python instantMinecraft.py & 
     disown  -h  %1
-
-
-
-
-
-# Amazon security and concern about other solutions
