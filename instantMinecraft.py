@@ -13,14 +13,20 @@ while True:
     (clientsocket, address) = s.accept()
     
     os.system('aws ec2 start-instances --instance-ids {}'.format(c.serverInstance))
+    time.sleep(60)
     os.system('aws ec2 associate-address --instance-id  {} --public-ip {} --allow-reassociation'.format(c.serverInstance, c.elasticIP))
     
-    time.sleep(60 * 3)
     while True:
         time.sleep(60 * 3)
-        j = MQ.get_info(c.serverInstance,25565)
-        if j['players']['online'] == 0:
-            break
+        try:
+            j = MQ.get_info(c.serverInstance,25565)
+            if j['players']['online'] == 0:
+                break
+            else:
+                print('People are online')
+        except:
+            print("error")
+
 
     os.system('aws ec2 associate-address --instance-id  {} --public-ip {} --allow-reassociation'.format(c.proxyInstance, c.elasticIP))
     os.system('aws ec2 stop-instances --instance-ids {} --hibernate'.format(c.serverInstance))
