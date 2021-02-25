@@ -2,18 +2,16 @@ import os, socket, time
 from configure import configure as c
 from mcstatus import MinecraftServer
 
-while True:
-    # create an INET, STREAMing socket
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    # bind the socket to a public host, and a well-known port
-    s.bind(('0.0.0.0', 25565))
-    # become a server socket
-    s.listen(1)
+# create an INET, STREAMing socket
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+# bind the socket to a public host, and a well-known port
+s.bind(('0.0.0.0', 25565))
+# become a server socket
+s.listen(1)
 
+while True:
     # waits for signal
     (clientsocket, address) = s.accept()
-    s.shutdown(socket.SHUT_RDWR) 
-    s.close()
 
     print('Starting server')
     
