@@ -1,6 +1,6 @@
 import os, socket, time
 from configure import configure as c
-import MinecraftQuery as MQ
+from mcstatus import MinecraftServer
 
 while True:
     # create an INET, STREAMing socket
@@ -25,8 +25,9 @@ while True:
     while playersOnline:
         print('People are online')
         time.sleep(120)
-        j = MQ.get_info(c.elasticIP,25565)
-        if j['players']['online'] == 0:
+        server = MinecraftServer.lookup(c.elasticIP+':25565')
+        status = server.status()
+        if status.players.online == 0:
             playersOnline = False
     
     print('Shutting down')
