@@ -87,11 +87,12 @@ Enter **Access Key Id** and **Secret Access Key** when prompted
 
 Next run
 
-    sudo yum install git
+    sudo yum install git python37
+    pip install mcstatus
     git clone https://github.com/BW122312412/InstantCraft.git
     cd InstantCraft
     nano configure.py
 
 Fill out the **configure.py**, then
 
-    python instantMinecraft.py & 
+    python3 instantMinecraft.py & 
