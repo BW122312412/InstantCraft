@@ -16,12 +16,13 @@ while True:
     time.sleep(60)
     os.system('aws ec2 associate-address --instance-id  {} --public-ip {} --allow-reassociation'.format(c.serverInstance, c.elasticIP))
     
-    while True:
+    playersOnline = True
+    while playersOnline:
         time.sleep(60 * 3)
         try:
-            j = MQ.get_info(c.serverInstance,25565)
+            j = MQ.get_info(c.elasticIP,25565)
             if j['players']['online'] == 0:
-                break
+                playersOnline = False
             else:
                 print('People are online')
         except:
