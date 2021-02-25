@@ -12,6 +12,7 @@ while True:
 
     # waits for signal
     (clientsocket, address) = s.accept()
+    s.shutdown() 
     s.close()
 
     print('Starting server')
@@ -23,7 +24,7 @@ while True:
     playersOnline = True
     while playersOnline:
         print('People are online')
-        time.sleep(60 * 3)
+        time.sleep(120)
         j = MQ.get_info(c.elasticIP,25565)
         if j['players']['online'] == 0:
             playersOnline = False
